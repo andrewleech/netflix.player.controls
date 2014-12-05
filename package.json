@@ -1,7 +1,7 @@
 {
-  "name": "extension-skeleton",
-  "version": "0.1.2",
-  "description": "Bare Google Chrome extension skeleton.",
+  "name": "Netflix.Player.Controller",
+  "version": "0.2.0",
+  "description": "Adds configurable keyboard controls to video playback on netflix.",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.4",
@@ -21,5 +21,5 @@
   "engines": {
     "node": ">= 0.10.0"
   },
-  "export-symbol": "extensionSkeleton.exports"
+  "export-symbol": "npc.exports"
 }
