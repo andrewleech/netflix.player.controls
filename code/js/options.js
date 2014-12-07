@@ -101,23 +101,39 @@ Action.prototype.render = function() {
 
 Action.next_id = 0;
 
-// function findParentClass(cls) {
-//     var p = this.parentNode;
-//     var found;
+function setOptions(options) {
+  var options_block = document.getElementById('options');
+  hide_mouse = options_block.getElementsByClassName('hide-mouse')[0];
+  hide_mouse_delay = options_block.getElementsByClassName('hide-mouse-delay')[0];
 
-//     while (p !== null) {
-//         var o = p;
-//         if (o.className == cls) {
-//           found = 0;
-//           break;
-//         }
-//         p = o.parentNode;
-//     }
-//     return found; // returns an Array []
-// }
+  hide_mouse.checked = options.hide_mouse;
+  hide_mouse_delay.disabled = (!options.hide_mouse);
+  hide_mouse_delay.value = options.hide_mouse_delay;
+
+  hide_mouse.onchange = storeOptions;
+  hide_mouse_delay.onchange = storeOptions;
+}
+
+function storeOptions() {
+  options = {};
+  options_block = document.getElementById('options');
+
+  // Hide Mouse Settings
+  hide_mouse = options_block.getElementsByClassName('hide-mouse')[0].checked;
+  hide_mouse_delay = options_block.getElementsByClassName('hide-mouse-delay')[0];
+  hide_mouse_delay.disabled = (!hide_mouse);
+
+  options.hide_mouse = hide_mouse;
+  options.hide_mouse_delay = hide_mouse_delay.value;
+
+  // Store options
+  common.storeOptions(options);
+  //localStorage.options = JSON.stringify(options);
+}
 
 function storeActions() {
-  localStorage.actions = JSON.stringify(Array.prototype.slice.apply(
+  
+    actions = Array.prototype.slice.apply(
       document.getElementById('actions').childNodes).map(function(node) {
     node.action.render();
     var keysArr = [];
@@ -138,17 +154,22 @@ function storeActions() {
     options.name = node.action.getElement('action-label').innerHTML;
     options.keys = keysArr;
     return options
-  }));
+  });
+  common.storeActions(actions);
 }
 
 window.onload = function() {
-  actions = common.loadActions();
-  var initialActions = []
-  actions.forEach(function(action) {initialActions.push(new Action(action));})
-  initialActions.map(function(action) {action.render();});
-  // document.getElementById('new').onclick = function() {
-  //   new Action();
-  // };
+  common.withOptions(function(options) {
+    setOptions(options);  
+  });
+  
+  //actions = common.loadActions();
+  common.withActions(function(actions) {
+    var initialActions = []
+    actions.forEach(function(action) {initialActions.push(new Action(action));})
+    initialActions.map(function(action) {action.render();});
+  });
+  
 }
 
 

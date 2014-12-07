@@ -7,7 +7,19 @@
 </head>
 <body>
 <h2>Netflix Player Controller</h2>
-<h4>Keymapping configuration</h4>
+<table id="options">
+<tr><td><h4>Options</h4></td></tr>
+<tr>
+  <td class=nowrap>
+    <input type=checkbox class=hide-mouse checked>
+      <label>Hide Mouse Delay:</label></span>
+  </td>
+  <td>  
+    <input class=hide-mouse-delay type="number"> (ms)
+  </td>
+</tr>
+<tr><td><h4>Keymapping configuration</h4></td></tr>
+</table>
 <table id="actions"></table>
 <table hidden> 
 <tr id="action-template" hidden style="border:1px solid green"> 
@@ -30,7 +42,6 @@
       <input type=checkbox class=Alt><label>Alt</label>
     </div>
   </td>
-  
 </tr>
 </table>
 </body>

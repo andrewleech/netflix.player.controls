@@ -8,6 +8,6 @@
     "matches": [ "*://*.netflix.com/WiPlayer*" ],
     "js": [ "js/content.js" ]
   }],
-  "permissions": [ "*://*.netflix.com/*", "tabs", "background" ],
+  "permissions": [ "*://*.netflix.com/*", "tabs", "background", "storage" ],
   "web_accessible_resources": [ "js/*", "html/*", "css/*", "images/*" ]
 }
