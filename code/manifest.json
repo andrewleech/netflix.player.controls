@@ -5,7 +5,7 @@
   "background": { "scripts": ["js/background.js"] },
   "options_page": "html/options.html",
   "content_scripts": [{
-    "matches": [ "*://*.netflix.com/*" ],
+    "matches": [ "*://*.netflix.com/WiPlayer*" ],
     "js": [ "js/content.js" ]
   }],
   "permissions": [ "*://*.netflix.com/*", "tabs", "background" ],

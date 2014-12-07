@@ -1,7 +1,7 @@
 ;(function() {
   // console.log('CONTENT SCRIPT WORKS!');
 
-  // var $ = require('./libs/jquery');
+  var $ = require('./libs/jquery');
   // here we use SHARED message handlers, so all the contexts support the same
   // commands. but this is NOT typical messaging system usage, since you usually
   // want each context to handle different commands. for this you don't need
@@ -190,59 +190,38 @@
       if (handled) {
         e.preventDefault();
       }
-
-      // switch(keyCombo) {
-      // case "Space":
-      //     if (!handleContinue()){
-      //         override = false;
-      //     }
-      //     break;
-      // case "?":
-      //     window.location = "https://www2.netflix.com/Help";
-      //     break;
-      // case "P":
-      //     SimulateKeypress(document.body, common.keyCharToCode["Space"])
-      //     break;
-      // case "Shift+P":
-      //     SimulateKeypress(document.body, common.keyCharToCode["Space"])
-      //     break;
-      // case "Ctrl+P":
-      //     SimulateKeypress(document.body, common.keyCharToCode["Space"])
-      //     break;
-      // case "Pause/Break":
-      //     SimulateKeypress(document.body, common.keyCharToCode["Space"])
-      //     break;
-      // case "Esc":
-      //     CloseWindow();
-      //     break;
-      // case "Escape":
-      //     CloseWindow();
-      //     break;
-      // case "]":
-      //     SimulateKeypress(document.body, common.keyCharToCode["Up"], 'keyup')
-      //     break;
-      // case "[":
-      //     SimulateKeypress(document.body, common.keyCharToCode["Down"], 'keyup')
-      //     break;
-      // case "Enter":
-      //     window.location.reload();
-      //     break;
-      // case "R":
-      //     window.location.reload();
-      //     break;
-      // default:
-      //     //console.log(keyCombo);
-      //     override = false;
-      // }
-      // if (override) {
-      //     e.preventDefault();
-      // }
   }
 
   //document.addEventListener('keypress', handleKeyPress, false);
   document.addEventListener('keydown', handleKeyPress, false);
 
+  // Hide mouse cursom when idle. Original concept from:
+  // http://stackoverflow.com/a/10564834/1769770
+  $(document).ready(function() {
+      var justHidden = false;
+      var hideTimeout;
+      var showTimeout;
+      
+      function scheduleHide(){
+        hideTimeout = setInterval(function(){
+                  $('html').css({cursor: 'none'});
+                  justHidden = true;
+                  showTimeout = setTimeout(function(){
+                      justHidden = false;
+                  }, 750);
+              }, 1000);
+      };
+      scheduleHide();
 
+      $(document).mousemove(function() {
+          if (!justHidden) {
+              //console.log('move');
+              clearInterval(hideTimeout);
+              $('html').css({cursor: 'default'});
+              scheduleHide();
+          }
+      });
+  });
 
 
 })();
