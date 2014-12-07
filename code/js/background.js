@@ -1,6 +1,6 @@
 ;(function() {
 
-  console.log('BACKGROUND SCRIPT WORKS!');
+  // console.log('BACKGROUND SCRIPT WORKS!');
 
   // here we use SHARED message handlers, so all the contexts support the same
   // commands. in background, we extend the handlers with two special

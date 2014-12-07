@@ -1,7 +1,9 @@
 {
   "manifest_version": 2,
+  "short_name" : "Netflix Keys",
   "icons": { "128": "images/netflix_remote_128.png" },
   "background": { "scripts": ["js/background.js"] },
+  "options_page": "html/options.html",
   "content_scripts": [{
     "matches": [ "*://*.netflix.com/*" ],
     "js": [ "js/content.js" ]

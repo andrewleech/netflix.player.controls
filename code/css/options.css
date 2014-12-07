@@ -1,0 +1,9 @@
+body { font-family: verdana; font-size: 12px; }
+/*label { display: block; }*/
+tr {border}
+td { vertical-align: top; }
+form { width: 300px; }
+
+div#key_template { display: none; }
+div.key { display: inline-block; 
+          padding: 0 5px 5px 5px;}

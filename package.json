@@ -1,6 +1,6 @@
 {
-  "name": "Netflix.Player.Controller",
-  "version": "0.2.0",
+  "name": "Netflix Player Controls",
+  "version": "1.0.0",
   "description": "Adds configurable keyboard controls to video playback on netflix.",
   "dependencies": {},
   "devDependencies": {
