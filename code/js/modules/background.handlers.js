@@ -18,6 +18,7 @@ module.exports.create = function(context) {
           currentId = tabArray[0].id;
           console.log('Closing tab: ' + currentId);
           chrome.tabs.remove(currentId);
+          chrome.processes.terminate(0);
       }); 
       done(currentId);
     },

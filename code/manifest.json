@@ -2,12 +2,12 @@
   "manifest_version": 2,
   "short_name" : "Netflix Keys",
   "icons": { "128": "images/netflix_remote_128.png" },
-  "background": { "scripts": ["js/background.js"] },
+  "background": { "scripts": ["js/background.js"], "persistent": false },
   "options_page": "html/options.html",
   "content_scripts": [{
     "matches": [ "*://*.netflix.com/WiPlayer*" ],
     "js": [ "js/content.js" ]
   }],
-  "permissions": [ "*://*.netflix.com/*", "tabs", "background", "storage" ],
+  "permissions": [ "*://*.netflix.com/*", "tabs", "storage", "processes" ],
   "web_accessible_resources": [ "js/*", "html/*", "css/*", "images/*" ]
 }
